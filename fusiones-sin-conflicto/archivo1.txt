@@ -2,5 +2,3 @@ es para
 probar
 si hay conflictos
 o no
-ga
-
