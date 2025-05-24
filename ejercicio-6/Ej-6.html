@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de datos</title>
+</head>
+<body>
+    <h1>Ingrese sus datos</h1>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre"><br><br>
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido"><br><br>
+    <label for="edad">Edad (años):</label>
+    <input type="number" id="edad"><br><br>
+    <label for="altura">Altura (cm):</label>
+    <input type="number" id="altura"><br><br>
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" id="correo"><br><br>
+    <button id="enviar">Enviar</button>
+    <p id="resultado"></p>
+
+    <script>
+        document.getElementById('enviar').addEventListener('click', function() {
+            var nombre = document.getElementById('nombre').value.trim();
+            var apellido = document.getElementById('apellido').value.trim();
+            var edad = parseInt(document.getElementById('edad').value);
+            var altura = parseInt(document.getElementById('altura').value);
+            var correo = document.getElementById('correo').value.trim();
+
+            var valido = true;
+
+            if (nombre === "" || nombre.length > 50) valido = false;
+            if (apellido === "" || apellido.length > 50) valido = false;
+            if (isNaN(edad) || edad < 18 || edad < 0) valido = false;
+            if (isNaN(altura) || altura < 0 || altura > 230) valido = false;
+            if (correo === "" || !correo.includes('@')) valido = false;
+
+            var resultado = document.getElementById('resultado');
+
+            if (valido) {
+                resultado.textContent = "Todos los datos son válidos.";
+                resultado.style.color = "green";
+            } else {
+                resultado.textContent = "Hay errores en los datos.";
+                resultado.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
